@@ -1,0 +1,44 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Funcional_prueba
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            IEnumerable<int> Counter = PrimesCounter();
+            foreach (var num in Counter)
+            {
+                Console.WriteLine(num);                
+            }
+	}
+        private static IEnumerable<int> PrimesCounter()
+        {
+            int[] x = new int[10]; //Sustituir el 10 por el numero limite
+
+            for(int i = 0; i < (x.Length - 1); i++)
+            {
+                x[i] = i + 2;
+            }
+
+            for(int i = 0; i < x.Length; i++)
+            {
+                for(int j = 0; j < x.Length; j++ )
+                {
+                    if(x[j] % x[i] == 0 && x[j] != x[i])
+                    {
+                        x = x.Except(new int[] {x[j]}).ToArray();
+                    }
+                }                
+            }            
+
+            for(int i = 0; i < x.Length; i++)
+            {
+                int c = x[i];
+                yield return c;
+            }
+        }
+    }
+}
