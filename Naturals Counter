@@ -1,0 +1,22 @@
+using System;
+
+namespace Funcional_prueba
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Func<int> Counter = CounterNumbers();     
+            for (int i = 0; i < 10; i++) //Sustituir el 10 por el numero limite
+	    {    
+            	Console.WriteLine(Counter());
+	    }
+        }
+
+        static Func<int> CounterNumbers()
+        {
+            int i = 0;
+            return () => i++;
+        }    
+    }
+}
